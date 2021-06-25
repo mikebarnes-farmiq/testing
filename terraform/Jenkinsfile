@@ -23,8 +23,8 @@ pipeline {
         }
         stage('Switch terraform workspace') {
             steps {
-                script {
-                    sh "~/.local/bin/terraform workspace new ${params.Environments}"
+                dir("terraform") {
+                    sh "~/.local/bin/terraform workspace switch ${params.Environments}"
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
                 TF_VAR_hydra_db_password = credentials("hydra_db_password_${params.Environments}")
                 TF_VAR_hydra_db_secrets_system = credentials("hydra_db_secrets_system_${params.Environments}")
             }
-            steps {
+            dir("terraform") {
                 sh "~/.local/bin/terraform apply -auto-approve -var-file=\"${params.Environments}.tfvars\""
             }
         }
