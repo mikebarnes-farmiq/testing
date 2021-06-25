@@ -28,10 +28,11 @@ pipeline {
                 }
             }
         }
-        stage('ls') {
+        stage('Change to terraform dir') {
             steps {
                 script {
-                    sh "ls -lisa"                    
+                    sh "cd terraform" 
+                    sh "ls -lisa"
                 }
             }
         }
