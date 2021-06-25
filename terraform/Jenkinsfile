@@ -17,12 +17,13 @@ pipeline {
         
         stage('Initialise terraform') {
             steps {
+                dir('terraform') {
+                      sh "pwd"
+                }
                 script {
+                    
                     sh "ls -lisa"
-                    sh "chdir ./terraform"
-                    sh "chdir ./terraform && pwd"
-                    sh "chdir ./terraform && ls -lisa"
-                    sh "chdir ./terraform && ~/.local/bin/terraform init"
+                    sh "~/.local/bin/terraform init"
                 }
             }
         }
