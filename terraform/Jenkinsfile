@@ -1,57 +1,44 @@
 pipeline {
     agent any
-   
     parameters {
         choice(name: 'Environments', choices: ['test','uat','prod'], description: 'Pick an environment')
     }
-    stages {
-        
+    stages {        
         stage('Setup terraform') {
             steps {
                 script {
-                    sh "pwd"
                     sh "mkdir -p ~/.local/bin"
                     sh "curl -fL https://releases.hashicorp.com/terraform/1.0.0/terraform_1.0.0_linux_amd64.zip > ~/.local/bin/terraform.zip"
                     sh "chdir ~/.local/bin && unzip -f terraform.zip && rm terraform.zip"
                 }
             }
         }
-        
         stage('Initialise terraform') {
             steps {
-                
                 script {
                     sh "pwd"
-                    sh "ls -lisa"
-                    dir("terraform") {
-                        sh "~/.local/bin/terraform init"
-                    }
-                    
+                }
+                dir("terraform") {
+                    sh "pwd"
+                    sh "~/.local/bin/terraform init"
                 }
             }
         }
         stage('Switch terraform workspace') {
             steps {
                 script {
-                    sh "pwd"
-                    dir("terraform") {
-                        sh "~/.local/bin/terraform workspace switch ${params.Environments}"
-                    }
+                    sh "~/.local/bin/terraform workspace new ${params.Environments}"
                 }
             }
         }
-        
         stage('Deploy terraform changes') {
             environment {
                 TF_VAR_fiq_db_password = credentials("fiq_db_password_${params.Environments}")
                 TF_VAR_hydra_db_password = credentials("hydra_db_password_${params.Environments}")
                 TF_VAR_hydra_db_secrets_system = credentials("hydra_db_secrets_system_${params.Environments}")
             }
-            step {
-                sh "pwd"
-                
+            steps {
                 sh "~/.local/bin/terraform apply -auto-approve -var-file=\"${params.Environments}.tfvars\""
-                
             }
         }
     }
