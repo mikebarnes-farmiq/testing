@@ -43,7 +43,7 @@ pipeline {
                 TF_VAR_hydra_db_secrets_system = credentials("hydra_db_secrets_system_${params.Environments}")
             }
             steps {
-                sh "~/.local/bin/terraform apply -auto-approve -var-file=\"${params.Environments}.tfvars\""
+                sh "~/.local/bin/terraform apply -auto-approve -var-file=\terraform/"${params.Environments}.tfvars\""
             }
         }
     }
