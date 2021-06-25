@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     sh "cd terraform" 
-                    sh "ls -lisa"
+                    sh "ls -lisa terraform"
                 }
             }
         }
