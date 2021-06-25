@@ -36,7 +36,7 @@ pipeline {
             }
             steps {
                 dir("terraform") {
-                    sh "~/.local/bin/terraform apply -auto-approve -var-file=\"${params.Environments}.tfvars\""
+                    sh "~/.local/bin/terraform destroy -auto-approve -var-file=\"${params.Environments}.tfvars\""
                 }
             }
         }
