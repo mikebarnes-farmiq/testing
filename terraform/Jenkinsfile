@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     sh "ls -lisa"
-                    sh "chdir ~/.local/bin/terraform"
+                    sh "chdir terraform"
                     sh "ls -lisa"
                 }
             }
