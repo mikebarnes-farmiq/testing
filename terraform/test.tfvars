@@ -1,3 +1,3 @@
-vpc_id     = "vpc-77456f10"
-subnet_a   = "subnet-77776510"
-subnet_b   = "subnet-af939fe6"
+vpc_id     = "vpc-0911cec043d5fc7e2"
+subnet_a   = "subnet-07f216aa390483890"
+subnet_b   = "subnet-061684c51d93feb37"
