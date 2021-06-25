@@ -7,6 +7,13 @@ pipeline {
         stage('Setup terraform') {
             steps {
                 script {
+                    sh "cd terraform"                    
+                }
+            }
+        }
+        stage('Setup terraform') {
+            steps {
+                script {
                     sh "mkdir -p ~/.local/bin"
                     sh "curl -fL https://releases.hashicorp.com/terraform/1.0.0/terraform_1.0.0_linux_amd64.zip > ~/.local/bin/terraform.zip"
                     sh "chdir ~/.local/bin && unzip -f terraform.zip && rm terraform.zip"
