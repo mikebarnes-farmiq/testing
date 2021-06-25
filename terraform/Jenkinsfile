@@ -4,13 +4,7 @@ pipeline {
         choice(name: 'Environments', choices: ['test','uat','prod'], description: 'Pick an environment')
     }
     stages {
-        stage('Change to terraform dir') {
-            steps {
-                script {
-                    sh "cd terraform"                    
-                }
-            }
-        }
+        
         stage('Setup terraform') {
             steps {
                 script {
@@ -31,6 +25,13 @@ pipeline {
             steps {
                 script {
                     sh "~/.local/bin/terraform workspace new ${params.Environments}"
+                }
+            }
+        }
+        stage('ls') {
+            steps {
+                script {
+                    sh "ls -lisa"                    
                 }
             }
         }
