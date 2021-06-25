@@ -14,10 +14,7 @@ pipeline {
             }
         }
         stage('Initialise terraform') {
-            steps {
-                script {
-                    sh "pwd"
-                }
+            steps {                
                 dir("terraform") {
                     sh "pwd"
                     sh "~/.local/bin/terraform init"
