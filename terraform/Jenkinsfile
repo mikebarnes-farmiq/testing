@@ -4,7 +4,7 @@ pipeline {
         choice(name: 'Environments', choices: ['test','uat','prod'], description: 'Pick an environment')
     }
     stages {
-        stage('Setup terraform') {
+        stage('Change to terraform dir') {
             steps {
                 script {
                     sh "cd terraform"                    
