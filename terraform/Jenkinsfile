@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    environment { 
-        WORKSPACE="${WORKSPACE}/terraform" 
-    }
+   
     parameters {
         choice(name: 'Environments', choices: ['test','uat','prod'], description: 'Pick an environment')
     }
@@ -21,7 +19,7 @@ pipeline {
         
         stage('Initialise terraform') {
             steps {
-                
+                dir("terraform")
                 script {
                     sh "pwd"
                     sh "ls -lisa"
