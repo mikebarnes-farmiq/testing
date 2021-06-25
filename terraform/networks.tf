@@ -23,7 +23,7 @@ data "aws_vpc" "farmiq_test" {
 # }
 
 resource "aws_security_group" "allow_http_https_lb" {
-  name   = "allow-http-https-${terraform.workspace}"
+  name   = "allow-http-https-lb-${terraform.workspace}"
   vpc_id = data.aws_vpc.farmiq_test.id
   ingress {
     description      = "Allow https access"
