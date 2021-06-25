@@ -24,7 +24,7 @@ pipeline {
         stage('Switch terraform workspace') {
             steps {
                 script {
-                    sh "~/.local/bin/terraform workspace new ${params.Environments}"
+                    sh "~/.local/bin/terraform workspace switch ${params.Environments}"
                 }
             }
         }
