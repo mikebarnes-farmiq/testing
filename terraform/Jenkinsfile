@@ -20,9 +20,9 @@ pipeline {
                 script {
                     sh "ls -lisa"
                     sh "chdir ./terraform"
-                    sh "pwd"
-                    sh "ls -lisa"
-                    sh "~/.local/bin/terraform init"
+                    sh "chdir ./terraform && pwd"
+                    sh "chdir ./terraform && ls -lisa"
+                    sh "chdir ./terraform && ~/.local/bin/terraform init"
                 }
             }
         }
