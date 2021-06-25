@@ -19,8 +19,8 @@ pipeline {
         
         stage('Initialise terraform') {
             steps {
-                dir("terraform") {}
-                script {
+                
+                dir("terraform") {
                     sh "pwd"
                     sh "ls -lisa"
                     sh "~/.local/bin/terraform init"
@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Switch terraform workspace') {
             steps {
-                script {
+                dir("terraform") {
                     sh "pwd"
                     sh "~/.local/bin/terraform workspace switch ${params.Environments}"
                 }
@@ -42,7 +42,7 @@ pipeline {
                 TF_VAR_hydra_db_password = credentials("hydra_db_password_${params.Environments}")
                 TF_VAR_hydra_db_secrets_system = credentials("hydra_db_secrets_system_${params.Environments}")
             }
-            steps {
+            dir("terraform") {
                 sh "pwd"
                 sh "~/.local/bin/terraform apply -auto-approve -var-file=\"${params.Environments}.tfvars\""
             }
