@@ -20,14 +20,7 @@ pipeline {
                     sh "~/.local/bin/terraform init"
                 }
             }
-        }
-        stage('Switch terraform workspace') {
-            steps {
-                dir("terraform") {
-                    sh "~/.local/bin/terraform workspace switch ${params.Environments}"
-                }
-            }
-        }
+        }        
         stage('Deploy terraform changes') {
             environment {
                 TF_VAR_fiq_db_password = credentials("fiq_db_password_${params.Environments}")
@@ -36,7 +29,8 @@ pipeline {
             }
             steps {
                 dir("terraform") {
-                    sh "~/.local/bin/terraform destroy -auto-approve -var-file=\"${params.Environments}.tfvars\""
+                    sh "~/.local/bin/terraform workspace switch ${params.Environments}"
+                    sh "~/.local/bin/terraform apply -auto-approve -var-file=\"${params.Environments}.tfvars\""
                 }
             }
         }
