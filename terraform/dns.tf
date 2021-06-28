@@ -8,8 +8,8 @@ resource "aws_route53_record" "auth" {
   zone_id = data.aws_route53_zone.farmiq_domain.id
 
   alias {
-    name                   = aws_lb.farm_iq.dns_name
-    zone_id                = aws_lb.farm_iq.zone_id
+    name                   = aws_lb.farmiq.dns_name
+    zone_id                = aws_lb.farmiq.zone_id
     evaluate_target_health = false
   }
 }
