@@ -12,3 +12,8 @@ variable "subnet_b" {
   description = "subnet az 2b"
   type        = string
 }
+
+variable "api_subdomain" {
+  description = "API subdomain"
+  type        = string
+}
