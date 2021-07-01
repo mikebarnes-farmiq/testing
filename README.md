@@ -40,10 +40,7 @@ The app needs a particularly configured SQL server. You can get this from AWS.
 - Add Local Tomcat run configuration to Intellij IDEA:
   - Click store as project file, Done, and OK. 
   - ![store_as_project_file](images/store_as_project_file.png?raw=true "store_as_project_file")
-  
-  
-  - 
-  - 
+  - Open the newly created file in .run, and replace with the following XML: (Unfortunately you can import a run config in IntelliJ but this is a workaround)
   ```
   <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.68" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home">
