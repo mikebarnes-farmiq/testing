@@ -22,10 +22,8 @@ The app needs a particularly configured SQL server. You can get this from AWS.
 * Generate yourself an AWS access token in the AWS IAM service
 * run `aws configure` (you'll need to get the AWS CLI to do this - `brew install awscli` or something different)
 * get Docker to log in to our AWS docker service: `aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 021624021317.dkr.ecr.ap-southeast-2.amazonaws.com`
-* pull and run the server: `docker run -p 1433:1433 --name sqlserver 021624021317.dkr.ecr.ap-southeast-2.amazonaws.com/sqlserver:synlait`
-* This will give you a running docker container with these credentials:
-  * global user: `admin`, `password`
-  * Company User: `admin-synlait`, `password`
+* pull and run the server: `docker run -p 1433:1433 --name sqlserver 021624021317.dkr.ecr.ap-southeast-2.amazonaws.com/sqlserver:synlait_210606`
+* You can find creds in 'farmiq/src/main/resources/application.properties'
   
 ## Tomcat
 - [Download](https://apache.inspire.net.nz/tomcat/tomcat-8/v8.5.68/bin/apache-tomcat-8.5.68.tar.gz) and [install](https://codingexplained.com/dev-ops/mac/installing-tomcat-8-os-x-yosemite) Tomcat 8.
@@ -133,8 +131,12 @@ The app needs a particularly configured SQL server. You can get this from AWS.
   </configuration>
 </component>
 ```
-- Make sure you update ${path_to_java_home}. Once you save it the run config will be updated.
-- If there are any issues, check the Tomcat config is pointing to the Tomcat installation.
+ - Make sure you update ${path_to_java_home}. Once you save it the run config will be updated.
+ - If there are any issues, check the Tomcat config is pointing to the Tomcat installation.
+
+- Hit run or debug and in a couple of minutes it should be running!!
+
+
 
 
 
