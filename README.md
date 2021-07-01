@@ -38,7 +38,8 @@ The app needs a particularly configured SQL server. You can get this from AWS.
 
 - ```mvn install```
 - Add Local Tomcat run configuration to Intellij IDEA:
-  - 
+  - Click store as project file, Done, and OK. 
+  - ![store_as_project_file](images/store_as_project_file.png?raw=true "store_as_project_file")
   
   
   - 
