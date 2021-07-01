@@ -41,9 +41,9 @@ The app needs a particularly configured SQL server. You can get this from AWS.
   - Click store as project file, Done, and OK. 
   - ![store_as_project_file](images/store_as_project_file.png?raw=true "store_as_project_file")
   - Open the newly created file in .run, and replace with the following XML: (Unfortunately you can import a run config in IntelliJ but this is a workaround)
-  ```
+```
   <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.68" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home">
+  <configuration default="false" name="tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.68" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="/${path_to_java_home}">
     <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/farmiq" />
     <option name="COMMON_VM_ARGUMENTS" value="-Dorg.apache.activemq.SERIALIZABLE_PACKAGES=* -Xmx8g -XX:MaxPermSize=256m -Dspring.profiles.active=dev" />
     <option name="UPDATING_POLICY" value="restart-server" />
@@ -133,6 +133,8 @@ The app needs a particularly configured SQL server. You can get this from AWS.
   </configuration>
 </component>
 ```
+- Make sure you update ${path_to_java_home}. Once you save it the run config will be updated.
+- If there are any issues, check the Tomcat config is pointing to the Tomcat installation.
 
 
 
